@@ -90,6 +90,11 @@ button {
   min-height: 100vh;
 }
 
+.scene.is-settled .envelope,
+.scene.is-settled .envelope-shadow {
+  display: none;
+}
+
 .envelope-shadow {
   position: absolute;
   width: min(84vw, 880px);
