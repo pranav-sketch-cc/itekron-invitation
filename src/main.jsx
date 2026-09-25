@@ -44,17 +44,6 @@ function App() {
           <div className="envelope-shadow" />
           <div className="envelope">
             <div className="envelope-back" />
-
-            <div className="letter" aria-hidden="true">
-              <div className="letter-paper">
-                <div className="letter-frame">
-                  <div className="letter-ornament">✦</div>
-                  <div className="blank-content" />
-                  <div className="letter-ornament">✦</div>
-                </div>
-              </div>
-            </div>
-
             <div className="envelope-front" />
             <div className="envelope-flap" />
             <div className="envelope-edge" />
@@ -68,7 +57,16 @@ function App() {
               </div>
             )}
           </div>
-        </section>
+
+          <div className="letter" aria-hidden="true">
+            <div className="letter-paper">
+              <div className="letter-frame">
+                <div className="letter-ornament">✦</div>
+                <div className="blank-content" />
+                <div className="letter-ornament">✦</div>
+              </div>
+            </div>
+          </div>        </section>
 
         <div className="open-hint" aria-hidden="true">
           <span>Opening your invitation</span>
