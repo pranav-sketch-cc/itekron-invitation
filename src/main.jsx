@@ -12,36 +12,112 @@ const PETALS = Array.from({ length: 34 }, (_, i) => ({
 }));
 
 function Petals() {
-  return <div className="petals" aria-hidden="true">
-    {PETALS.map((p) => (
-      <span key={p.id} className="petal" style={{
-        left: p.left + "%",
-        animationDelay: p.delay + "s",
-        animationDuration: p.duration + "s",
-        width: p.size + "px",
-        height: p.size * 1.35 + "px",
-        "--drift": p.drift + "px"
-      }} />
-    ))}
-  </div>;
+  return (
+    <div className="petals" aria-hidden="true">
+      {PETALS.map((p) => (
+        <span
+          key={p.id}
+          className="petal"
+          style={{
+            left: p.left + "%",
+            animationDelay: p.delay + "s",
+            animationDuration: p.duration + "s",
+            width: p.size + "px",
+            height: p.size * 1.35 + "px",
+            "--drift": p.drift + "px"
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function InvitationContent() {
+  return (
+    <div className="letter-paper">
+      <div className="letter-frame">
+        <header className="letter-top">
+          <img
+            className="college-logo"
+            src="https://npsbcet.edu.in/wp-content/uploads/2026/02/cred.png"
+            alt="New Prince Shri Bhavani College of Engineering and Technology"
+          />
+          <p className="college-name">
+            NEW PRINCE SHRI BHAVANI
+            <br />
+            COLLEGE OF ENGINEERING AND TECHNOLOGY
+          </p>
+        </header>
+
+        <section className="invitation-hero">
+          <p className="eyebrow">YOU ARE CORDIALLY INVITED TO</p>
+          <h1>I-TEKRON&apos;26</h1>
+          <div className="hero-line" aria-hidden="true">
+            <span />
+            <b>✦</b>
+            <span />
+          </div>
+          <img
+            className="college-image"
+            src="https://npsbcet.edu.in/wp-content/uploads/2026/02/imm-300x300.png"
+            alt="New Prince Shri Bhavani College of Engineering and Technology campus"
+          />
+          <p className="invite-text">
+            Join us for a celebration of technology, creativity and innovation.
+          </p>
+          <span className="scroll-cue" aria-hidden="true">
+            Scroll to explore
+            <span>↓</span>
+          </span>
+        </section>
+
+        <section className="invitation-section">
+          <span className="section-mark">✦</span>
+          <p className="section-kicker">A SPECIAL INVITATION</p>
+          <h2>Technology. Creativity. Innovation.</h2>
+          <p>
+            Step into I-TEKRON&apos;26 and experience an invitation crafted
+            especially for a celebration of ideas, imagination and the spirit
+            of technology.
+          </p>
+          <p>
+            We look forward to welcoming you and making this occasion a
+            memorable one.
+          </p>
+        </section>
+
+        <footer className="letter-footer">
+          <span>✦</span>
+          <p>I-TEKRON&apos;26</p>
+          <span>✦</span>
+        </footer>
+      </div>
+    </div>
+  );
 }
 
 function App() {
   const [opened, setOpened] = useState(false);
+  const [settled, setSettled] = useState(false);
 
   useEffect(() => {
-    if (!opened) return;
-    document.body.classList.add("invitation-open");
+    document.body.classList.toggle("invitation-open", settled);
     return () => document.body.classList.remove("invitation-open");
-  }, [opened]);
+  }, [settled]);
+
+  const handleOpen = () => {
+    if (opened) return;
+    setOpened(true);
+  };
 
   return (
-    <main className={"scene " + (opened ? "is-open" : "")}>
+    <main className={"scene " + (opened ? "is-open " : "") + (settled ? "is-settled" : "")}>
       <div className="sticky-stage">
         <div className="ambient" aria-hidden="true" />
 
         <section className="envelope-scene" aria-label="Invitation envelope">
           <div className="envelope-shadow" />
+
           <div className="envelope">
             <div className="envelope-back" />
             <div className="envelope-front" />
@@ -50,7 +126,12 @@ function App() {
 
             {!opened && (
               <div className="seal-wrap">
-                <button className="seal" onClick={() => setOpened(true)} aria-label="Open invitation">
+                <button
+                  className="seal"
+                  onClick={handleOpen}
+                  aria-label="Open invitation"
+                  type="button"
+                >
                   <span className="seal-inner">✦</span>
                 </button>
                 <div className="tap-hint">Tap the seal to open the invitation</div>
@@ -58,15 +139,16 @@ function App() {
             )}
           </div>
 
-          <div className="letter" aria-hidden="true">
-            <div className="letter-paper">
-              <div className="letter-frame">
-                <div className="letter-ornament">✦</div>
-                <div className="blank-content" />
-                <div className="letter-ornament">✦</div>
-              </div>
-            </div>
-          </div>        </section>
+          <div
+            className="letter"
+            aria-label="I-TEKRON'26 invitation"
+            onAnimationEnd={(event) => {
+              if (event.animationName === "letterReveal") setSettled(true);
+            }}
+          >
+            <InvitationContent />
+          </div>
+        </section>
 
         <div className="open-hint" aria-hidden="true">
           <span>Opening your invitation</span>
