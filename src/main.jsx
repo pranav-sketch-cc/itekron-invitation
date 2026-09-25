@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
@@ -12,63 +12,40 @@ const PETALS = Array.from({ length: 34 }, (_, i) => ({
 }));
 
 function Petals() {
-  return (
-    <div className="petals" aria-hidden="true">
-      {PETALS.map((p) => (
-        <span
-          key={p.id}
-          className="petal"
-          style={{
-            left: p.left + "%",
-            animationDelay: p.delay + "s",
-            animationDuration: p.duration + "s",
-            width: p.size + "px",
-            height: p.size * 1.35 + "px",
-            "--drift": p.drift + "px"
-          }}
-        />
-      ))}
-    </div>
-  );
+  return <div className="petals" aria-hidden="true">
+    {PETALS.map((p) => (
+      <span key={p.id} className="petal" style={{
+        left: p.left + "%",
+        animationDelay: p.delay + "s",
+        animationDuration: p.duration + "s",
+        width: p.size + "px",
+        height: p.size * 1.35 + "px",
+        "--drift": p.drift + "px"
+      }} />
+    ))}
+  </div>;
 }
 
 function App() {
   const [opened, setOpened] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);\n  const envelopeRef = useRef(null);
 
   useEffect(() => {
-    const onScroll = () => {
-      if (!opened) return;
-      const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
-      setScrollProgress(Math.min(window.scrollY / max, 1));
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    if (!opened) return;
+    document.body.classList.add("invitation-open");
+    return () => document.body.classList.remove("invitation-open");
   }, [opened]);
 
-  const initialLetterWidth = Math.min(window.innerWidth * 0.48, 420);
-  const initialLetterHeight = Math.min(window.innerWidth * 0.68, 590);
-  const letterStyle = {
-    "--letter-progress": scrollProgress,
-    "--letter-y": (14 - scrollProgress * 14) + "vh",
-    "--letter-scale": 0.72 + scrollProgress * 0.28,
-    "--letter-rotate": (0.8 - scrollProgress * 0.8) + "deg",
-    "--letter-width": (initialLetterWidth + (window.innerWidth - initialLetterWidth) * scrollProgress) + "px",
-    "--letter-height": (initialLetterHeight + (window.innerHeight - initialLetterHeight) * scrollProgress) + "px"
-  };
-
   return (
-    <main className={"scene " + (opened ? "is-open " : "") + (scrollProgress > 0.02 ? "has-scroll" : "")}>
+    <main className={"scene " + (opened ? "is-open" : "")}>
       <div className="sticky-stage">
         <div className="ambient" aria-hidden="true" />
 
         <section className="envelope-scene" aria-label="Invitation envelope">
           <div className="envelope-shadow" />
-          <div className="envelope" ref={envelopeRef}>
+          <div className="envelope">
             <div className="envelope-back" />
 
-            <div className="letter" style={letterStyle} aria-hidden="true">
+            <div className="letter" aria-hidden="true">
               <div className="letter-paper">
                 <div className="letter-frame">
                   <div className="letter-ornament">✦</div>
@@ -93,8 +70,8 @@ function App() {
           </div>
         </section>
 
-        <div className="scroll-cue" aria-hidden="true">
-          <span>Scroll to reveal</span>
+        <div className="open-hint" aria-hidden="true">
+          <span>Opening your invitation</span>
           <i />
         </div>
 
