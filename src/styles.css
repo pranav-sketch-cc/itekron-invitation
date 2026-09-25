@@ -346,8 +346,8 @@ button {
 }
 
 .college-logo {
-  width: clamp(130px, 15vw, 210px);
-  height: clamp(92px, 12vw, 150px);
+  width: clamp(220px, 28vw, 380px);
+  height: clamp(150px, 20vw, 250px);
   object-fit: contain;
   display: block;
   object-position: center;
@@ -832,8 +832,8 @@ button {
   }
 
   .college-logo {
-    width: min(180px, 62vw);
-    height: 115px;
+    width: min(290px, 82vw);
+    height: 190px;
   }
 
   .college-name {
