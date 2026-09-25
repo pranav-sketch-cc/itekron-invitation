@@ -8,14 +8,14 @@ const RAW_ASSET_BASE =
 const asset = (path) =>
   RAW_ASSET_BASE + path.split("/").map(encodeURIComponent).join("/");
 
-const FEATURED_POSTER = asset("itekron-poster.jpg");
+const FEATURED_POSTER = asset("non-tech/itekron-poster.jpg");
 
 const POSTERS = [
-  ["Cognexa", asset("tech/Cognexa A4.png")],
-  ["Convera", asset("tech/Convera A4.png")],
-  ["Mind 2 Code", asset("tech/Mind 2 code A4.png")],
-  ["WebbugX", asset("tech/WebbugX A4.png")],
-  ["UXify", asset("tech/uxify A4.png")],
+  ["Cognexa", asset("non-tech/tech/Cognexa A4.png")],
+  ["Convera", asset("non-tech/tech/Convera A4.png")],
+  ["Mind 2 Code", asset("non-tech/tech/Mind 2 code A4.png")],
+  ["WebbugX", asset("non-tech/tech/WebbugX A4.png")],
+  ["UXify", asset("non-tech/tech/uxify A4.png")],
   ["Brainvex", asset("non-tech/BRAINVEX NON-TECHNICAL EVENT.jpg.jpeg")],
   ["Dreaden Crypta", asset("non-tech/DREADEN CRYPTA post (1).png")],
   ["Hogwarts Hustles", asset("non-tech/HOGWARTS HUSTLES post (1).png")],
