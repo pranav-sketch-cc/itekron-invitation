@@ -50,9 +50,9 @@ transform:translateY(18vh) scale(.68) rotate(.8deg);animation:none}
 .paper-symbol{font-size:13px;color:#a4815c}
 .blank-content{flex:1;width:100%}
 @keyframes paperReveal{
-  0%{transform:translateY(18vh) scale(.68) rotate(.8deg)}
-  55%{transform:translateY(0) scale(.94) rotate(-.35deg)}
-  100%{transform:translateY(0) scale(1) rotate(0)}
+  0%{width:min(79vw,650px);height:min(110vw,900px);transform:translateY(18vh) scale(.68) rotate(.8deg);padding:24px}
+  55%{width:min(92vw,900px);height:min(94vh,1100px);transform:translateY(0) scale(.94) rotate(-.35deg);padding:24px}
+  100%{width:100vw;height:100vh;transform:translateY(0) scale(1) rotate(0);padding:clamp(18px,3vw,42px)}
 }
 
 .petals{position:absolute;inset:0;overflow:hidden;pointer-events:none}
