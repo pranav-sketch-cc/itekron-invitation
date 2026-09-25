@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
@@ -34,7 +34,7 @@ function Petals() {
 
 function App() {
   const [opened, setOpened] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);\n  const envelopeRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -61,7 +61,7 @@ function App() {
 
         <section className="envelope-scene" aria-label="Invitation envelope">
           <div className="envelope-shadow" />
-          <div className="envelope">
+          <div className="envelope" ref={envelopeRef}>
             <div className="envelope-back" />
 
             <div className="letter" style={letterStyle} aria-hidden="true">
