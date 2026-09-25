@@ -2,6 +2,27 @@ import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
+const RAW_ASSET_BASE =
+  "https://raw.githubusercontent.com/pranav-sketch-cc/itekron-invitation/main/assets/";
+
+const asset = (path) =>
+  RAW_ASSET_BASE + path.split("/").map(encodeURIComponent).join("/");
+
+const FEATURED_POSTER = asset("itekron-poster.jpg");
+
+const POSTERS = [
+  ["Cognexa", asset("tech/Cognexa A4.png")],
+  ["Convera", asset("tech/Convera A4.png")],
+  ["Mind 2 Code", asset("tech/Mind 2 code A4.png")],
+  ["WebbugX", asset("tech/WebbugX A4.png")],
+  ["UXify", asset("tech/uxify A4.png")],
+  ["Brainvex", asset("non-tech/BRAINVEX NON-TECHNICAL EVENT.jpg.jpeg")],
+  ["Dreaden Crypta", asset("non-tech/DREADEN CRYPTA post (1).png")],
+  ["Hogwarts Hustles", asset("non-tech/HOGWARTS HUSTLES post (1).png")],
+  ["Meme Masters", asset("non-tech/MEME MASTERS post.png")],
+  ["Mind Mosaic", asset("non-tech/Mind Mosaic.png")]
+];
+
 const PETALS = Array.from({ length: 34 }, (_, i) => ({
   id: i,
   left: (i * 29) % 101,
@@ -32,6 +53,53 @@ function Petals() {
   );
 }
 
+function PosterShowcase() {
+  const carouselPosters = [...POSTERS, ...POSTERS];
+
+  return (
+    <section className="poster-showcase" aria-label="I-TEKRON'26 events and posters">
+      <div className="featured-poster-wrap">
+        <div className="featured-poster-card">
+          <img
+            src={FEATURED_POSTER}
+            alt="I-TEKRON'26 poster"
+            className="featured-poster"
+          />
+        </div>
+      </div>
+
+      <div className="event-meta" aria-label="Event date and time">
+        <div>
+          <span>DATE</span>
+          <strong>26th September 2026</strong>
+        </div>
+        <i aria-hidden="true">✦</i>
+        <div>
+          <span>TIME</span>
+          <strong>10:00 AM</strong>
+        </div>
+      </div>
+
+      <div className="poster-carousel-shell">
+        <div className="poster-carousel-heading">
+          <span>EXPLORE THE EVENTS</span>
+          <b>TECH &amp; NON-TECH</b>
+        </div>
+
+        <div className="poster-carousel" aria-label="Event poster carousel">
+          <div className="poster-track">
+            {carouselPosters.map(([name, src], index) => (
+              <div className="poster-card" key={name + "-" + index}>
+                <img src={src} alt={name + " event poster"} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function InvitationContent() {
   return (
     <div className="letter-paper">
@@ -52,16 +120,7 @@ function InvitationContent() {
         <section className="invitation-hero">
           <p className="eyebrow">YOU ARE CORDIALLY INVITED TO</p>
           <h1>I-TEKRON&apos;26</h1>
-          <div className="hero-line" aria-hidden="true">
-            <span />
-            <b>✦</b>
-            <span />
-          </div>
-          <img
-            className="college-image"
-            src="https://npsbcet.edu.in/wp-content/uploads/2026/02/imm-300x300.png"
-            alt="New Prince Shri Bhavani College of Engineering and Technology campus"
-          />
+          <PosterShowcase />
           <p className="invite-text">
             Join us for a celebration of technology, creativity and innovation.
           </p>
