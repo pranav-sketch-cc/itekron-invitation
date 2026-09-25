@@ -107,7 +107,7 @@ function InvitationContent() {
         <header className="letter-top">
           <img
             className="college-logo"
-            src="https://npsbcet.edu.in/wp-content/uploads/2026/02/cred.png"
+            src={asset("non-tech/itekron Certificate final.pdf.png")}
             alt="New Prince Shri Bhavani College of Engineering and Technology"
           />
           <p className="college-name">
