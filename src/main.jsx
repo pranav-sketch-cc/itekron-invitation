@@ -47,11 +47,15 @@ function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [opened]);
 
+  const initialLetterWidth = Math.min(window.innerWidth * 0.48, 420);
+  const initialLetterHeight = Math.min(window.innerWidth * 0.68, 590);
   const letterStyle = {
     "--letter-progress": scrollProgress,
-    "--letter-y": (18 - scrollProgress * 18) + "vh",
-    "--letter-scale": 0.68 + scrollProgress * 0.32,
-    "--letter-rotate": (0.8 - scrollProgress * 0.8) + "deg"
+    "--letter-y": (14 - scrollProgress * 14) + "vh",
+    "--letter-scale": 0.72 + scrollProgress * 0.28,
+    "--letter-rotate": (0.8 - scrollProgress * 0.8) + "deg",
+    "--letter-width": (initialLetterWidth + (window.innerWidth - initialLetterWidth) * scrollProgress) + "px",
+    "--letter-height": (initialLetterHeight + (window.innerHeight - initialLetterHeight) * scrollProgress) + "px"
   };
 
   return (
