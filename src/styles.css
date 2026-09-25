@@ -31,7 +31,7 @@ button{font:inherit}
 .tap-hint::after{content:"";position:absolute;left:50%;top:-13px;width:1px;height:9px;background:#9b8064;opacity:.5}
 @keyframes float{0%,100%{transform:translate(-50%,0);opacity:.7}50%{transform:translate(-50%,-5px);opacity:1}}
 
-.letter{position:absolute;z-index:3;left:50%;top:50%;width:100%;height:100%;pointer-events:none;transform:translate(-50%,var(--letter-y)) scale(var(--letter-scale)) rotate(var(--letter-rotate));transform-origin:center bottom;transition:transform .08s linear}
+.letter{position:absolute;z-index:3;left:50%;top:50%;width:var(--letter-width);height:var(--letter-height);pointer-events:none;transform:translate(-50%,var(--letter-y)) scale(var(--letter-scale)) rotate(var(--letter-rotate));transform-origin:center bottom;transition:transform .08s linear,width .08s linear,height .08s linear}
 .letter-paper{width:100%;height:100%;padding:24px;background:#fbf7ee;box-shadow:0 20px 60px rgba(62,47,32,.24)}
 .letter-frame{width:100%;height:100%;border:1px solid rgba(135,101,67,.3);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:26px}
 .letter-ornament{font-size:13px;color:#a4815c}
